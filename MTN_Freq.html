@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>MTN Formula Sheet</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><! Formula's Provided by Doug Spessert : Implemented in JavaScript by TRL ><! .... >
+<SCRIPT language=JavaScript>
+<!--- hide script from old browsers
+function TXIF(form) 
+{ 
+
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+var MWorking=0
+var LBMon=0
+var LBDF
+
+
+working = (form.a1.value * 10000) - (form.b1.value * 10000)
+working = Math.round(working)
+working = working/10000
+Freq = working +140
+form.c1.value = Freq 
+LWorking = (form.b1.value )-( 4900)
+Lworking = LWorking*10000
+
+LBFreq = Math.round(Lworking)/10000
+
+form.LBUF.value = LBFreq 
+
+MWorking = (form.a1.value)-(4900)
+MWorking = MWorking*10000
+LBMon = Math.round(MWorking)/10000
+form.TXTLBMon.value = LBMon
+
+
+}
+
+
+function RXIF(form) 
+{ 
+
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+var DLMon=0 
+
+working = (form.a2.value * 10000) - (form.b2.value * 10000)
+working = Math.round(working)
+working = working/10000
+Freq = working + 140
+form.c2.value = Freq 
+LWorking = (5150)-(form.a2.value )
+Lworking = LWorking*10000
+
+LBFreq = Math.round(Lworking)/10000
+form.LBDF.value = LBFreq 
+
+DLMon = (5150)-(form.b2.value)
+form.LBDM.value = DLMon
+
+}
+
+function LtoCBand (form) 
+{
+var LBand = 0
+var cBand = 0 
+
+CBand = (5150)-(form.LBDM.value) 
+form.b2.value = CBand 
+
+
+
+}
+
+
+
+
+function add(form) {form.c1.value = (form.a1.value * 1) + (form.b1.value * 1)} 
+function subtract(form) {form.c2.value = (form.a2.value * 1) - (form.b2.value * 1)}
+function multiply(form) {form.c3.value = form.a3.value * form.b3.value}
+function divide(form) {form.c4.value = form.a4.value / form.b4.value}
+// end hiding contents from old browsers  -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.5890" name=GENERATOR></HEAD>
+
+<BODY>
+<TABLE width=700>
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER>
+      <H2>Transponder to IF Formula Sheet. </H2></CENTER><! KBand TX KU-12800 = L-Band><! KBand RX Ku-10750 = L-Band>
+      <P><FONT face="Times New Roman" size=3>The information contained below is 
+      meant to help you convert, RX Frequencies to IF Frequencies. This is 
+      assuming that you dial up the L-Band Convertor to the Equivalent LB Center 
+      Frequency for satellite transponder. 
+</FONT></P></TD></TR></TBODY></TABLE><BR>SLR-ID <INPUT size=41 name=SLRID>. 
+Customer Name <INPUT size=50 name="Customer Name">. <BR>Antenna <INPUT size=10 
+name=Antenna>. Transponder <INPUT size=12 name="Transponder TX/RX">. <BR>
+<FORM>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+      <P>To Calc the Freq for non-inverting systems, use the <A 
+      href="../TomsTools/CKG_Freq.html">CKG_Freq</A> 
+      Calculator. <BR>To Calc the Freq for a Ku Band service use the <A 
+      href="../TomsTools/MTN_KBandFreq.html">MTN_KuBand</A> 
+      Calculator </P>
+      <P><PRE>XP Center 
+<U>-4900</U> 
+UC Center on the Transponder.
+
+Example 
+XP Center                 5970
+- Block conversion:     <U> -4900</U> 
+                        
+Gives an  LBand Freq of   1070 
+</PRE></TD>
+    <TD width=25>&nbsp; </TD>
+    <TD vAlign=top>
+      <P>To Calc the Center Frequency of a L-Band Downconvertor apply the 
+      following Formula. </P><PRE>Example
+D/C Conversion (5150) 
+<U>   - TX Center</U> 
+ Center on LBand D/C
+
+Block D/C Conversion:     5150.0000
+- Transponder Center:  <U>   3716.1250</U>
+                          
+Gives an LBand Freq of    1433.875 
+</PRE></TD></TR>
+  <TR>
+    <TD colSpan=3 height=20>&nbsp;</TD></TR>
+  <TR>
+    <TD vAlign=top width=500>
+      <P><B>To Calc the TX IF of a given Carrier.</B> </P>TXIF = TXFrequency - 
+      XPCenter +140 <BR>(Non-Inverting C-Band) <PRE>Example
+Tx Frequency   6071.6225 <INPUT style="BACKGROUND: #ffd700" size=9 name=a1>
+XP Center      6050.0000 <INPUT size=9 name=b1>
+                 21.6225
++140            140.0000   
+               _______
+IF Out at the   161.6225 <INPUT size=9 name=c1>
+Modulator <INPUT onclick=TXIF(this.form) type=button value=Calculate>
+
+CF of the LBand U/C will be. <INPUT size=9 name=LBUF> 
+
+Your LBand Monitor Freq will be <INPUT size=9 name=TXTLBMon>.
+</PRE>
+<span  >
+Copies of printouts of these sheets, were part of our standard service documentation for several
+years, prior to digitalization of that data. </span>
+</TD>
+    <TD>&nbsp;</TD>
+    <TD width=400>
+      <P><B>To Calc the RXIF of a given Carrier</B></P>RXIF= (XPCenter - 
+      RXFrequency) + 140 <BR>(Inverting C-Band) <PRE>Example 
+XP Center       3825.0000 <INPUT size=9 name=a2>
+RXFrequency     3853.5075 <INPUT style="BACKGROUND: #ffd700" size=9 name=b2>
+               __________
+Yields a minus  - 28.5075
+
+So               140.0000
+         Minus  - 28.5075
+        _________________
+IF to the DMod =  111.4925 <INPUT size=9 name=c2>
+<INPUT onclick=RXIF(this.form) type=button value=Calculate>
+
+CF of the LBand D/C Will Be. <INPUT size=9 name=LBDF>.
+L-Band RxMonitor Freq is. &nbsp; &nbsp;<INPUT size=9 name=LBDM>
+<INPUT onclick=LtoCBand(this.form) type=button value=L-CBand>
+
+
+
+<FONT color=blue>
+Updated 08 May 07, Seems to work, <BR>let me know if you encounter any bugs. SMM </FONT>
+</PRE>
+
+</TD></TR></TBODY></TABLE></FORM>
+
+
+
+<div style="width:550;"> 
+
+
+The TSEs formerly linked below referred to transponder plans for a series of satellites that were not obsolete at the time. Today, only IS-9 Series satellites are still used. These links provided the transponder center data needed for the calculations. </div>
+
+<BR><A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite_Transponder_Plans/TSE%20-%20Intelsat%209's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 9 Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite_Transponder_Plans/TSE%20-%20Intelsat%208's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 8 Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite_Transponder_Plans/TSE%20-%20Intelsat%207A's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 7A Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite_Transponder_Plans/TSE%20-%20Intelsat%206's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 6 Birds </A>&nbsp; &nbsp; &nbsp; </BODY></HTML>

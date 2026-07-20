@@ -1,0 +1,259 @@
+	<HTML>
+<Head>
+<! Formula's Provided by Doug Spessert : Implemented in JavaScript by TRL >
+<! .... >
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--- hide script from old browsers
+
+var rxtrans=10750
+var uctrans=12800
+
+
+
+function TXIF(form) 
+{ 
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+var MWorking=0
+var LBMon=0
+var LBDF
+
+
+working = (form.a1.value * 10000) - (form.b1.value * 10000)
+working = Math.round(working)
+working = working/10000
+Freq = working +140
+form.c1.value = Freq 
+LWorking = (form.b1.value )-( uctrans)
+Lworking = LWorking*10000
+
+LBFreq = Math.round(Lworking)/10000
+
+form.LBUF.value = LBFreq 
+
+MWorking = (form.a1.value)-(uctrans)
+MWorking = MWorking*10000
+LBMon = Math.round(MWorking)/10000
+form.TXTLBMon.value = LBMon
+}
+
+
+function RXIF(form) 
+{ 
+
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+var DLMon=0 
+
+
+working =  (form.b2.value * 10000) - (form.a2.value * 10000) 
+working = Math.round(working)
+working = working/10000
+Freq = working + 140
+form.c2.value = Freq 
+LWorking = (form.a2.value ) -(rxtrans)
+Lworking = LWorking*10000
+
+LBFreq = Math.round(Lworking)/10000
+form.LBDF.value = LBFreq 
+
+DLMon = (form.b2.value)-(rxtrans) 
+form.LBDM.value = DLMon
+
+}
+
+function FnIS9xx(form) 
+{
+rxtrans=9950
+form.rxlo.value=9950
+}
+
+function FnTen500(form) 
+{
+rxtrans=10500
+form.rxlo.value=10500
+} 
+
+function FnIA8(form) 
+{
+rxtrans=10750
+form.rxlo.value=10750
+} 
+
+
+
+
+function add(form) {form.c1.value = (form.a1.value * 1) + (form.b1.value * 1)} 
+function subtract(form) {form.c2.value = (form.a2.value * 1) - (form.b2.value * 1)}
+function multiply(form) {form.c3.value = form.a3.value * form.b3.value}
+function divide(form) {form.c4.value = form.a4.value / form.b4.value}
+// end hiding contents from old browsers  -->
+</script>
+
+<! >
+<! >
+<!     End of Formula's start of Text. > 
+<! >
+<! > 
+
+<Title> MTN Ku Formula Sheet </title>
+<head>
+<Body>
+<table width=700>
+<tr><td>
+<Center> 
+<H2> Ku Transponder to IF Formula Sheet. </H2></center>
+<! KBand TX KU-12800 = L-Band> 
+<! KBand RX Ku-10750 = L-Band Nominal> 
+<! KBand Rx Ku- 9950? = LM-7 (IS Birds 10.99-11.675 Ghz Band.) 
+
+
+<P> <Font Face="Times New Roman" Size="3">
+The information contained below is meant to help you convert,
+RF Frequencies to IF Frequencies,  assuming that your
+dial up the L-Band Convertor to the Equivalent LB Center Frequency 
+for satellite transponder. </Font>
+</P></td></tr></table><br>
+
+SLR-ID <INPUT TYPE="text" NAME="SLRID" SIZE=41>.
+Customer Name <INPUT TYPE="text" NAME="Customer Name" SIZE=50>.
+<BR>
+Antenna <INPUT TYPE="text" NAME="Antenna" SIZE=10>.
+Transponder <INPUT TYPE="text" NAME="Transponder TX/RX" SIZE=12>.
+
+<BR>
+
+
+<Form name="frmKU">
+<table Border=0>
+<tr>
+<td valign=top >
+<P >
+To Calc the Freq a CBand Service, use the 
+<a href="MTN_Freq.html" >MTN CBand</a> Calculator sheet linked to this page.  </P>
+<P>
+<Pre>
+XP Center 
+<U>-12800</U> 
+UC Center on the Transponder.
+
+Example 
+XP Center                 14355.000
+- Block conversion:     <U> -12800.000</U> 
+                        
+Gives an  LBand Freq of    1555
+</pre>
+</td>
+<td width=25> &nbsp </td>
+<td valign=top>
+<P>
+To Calc the Center Frequency of a L-Band Downconvertor
+apply the following Formula. </P>
+<Pre>
+Example
+XP-Center. 
+<U> D/C Conversion (10750) </U> 
+ Center on LBand D/C
+
+- Transponder Center:    11856.300
+Block D/C Conversion: &nbsp &nbsp<U>10750</U>
+                          
+Gives an LBand Freq of    1106.300 
+</td>
+</tr>
+<tr>
+<td height=20 colspan=2>&nbsp</td>
+<td> 
+<INPUT type="button"  SIZE=7 value="IS9xx" name="IS9btn"  ONCLICK="FnIS9xx(this.form)" >
+&nbsp 
+<INPUT type="button"  SIZE=7 value="Ten500" name="IS9btn"  ONCLICK="FnTen500(this.form)" >
+&nbsp 
+<INPUT type="button"  SIZE=7 value="IA-8 " name="IA8btn"   ONCLICK="FnIA8(this.form)" >
+
+<INPUT TYPE="text" NAME="rxlo" SIZE=7> 
+</td>
+</tr>
+<tr><td valign=top >
+<P><b>
+To Calc the TX IF of a given Carrier.</b> </P>
+TXIF = TXFrequency - XPCenter +140 <br>
+(Non-Inverting Ku-Band) 
+
+<Pre>
+Example
+
+Tx Frequency   14340.0825 <INPUT TYPE="text" NAME="a1" SIZE=9 STYLE="background:FFD700">
+XP Center      14355.0000 <INPUT TYPE="text" NAME="b1" SIZE=9>
+    Delta               -14.9175
++140            140.0000   
+               _______
+IF Out at the   125.0825 <INPUT TYPE="text" NAME="c1" SIZE=9>
+Modulator <INPUT TYPE="BUTTON" VALUE="Calculate" ONCLICK="TXIF(this.form)">
+
+CF of the LBand U/C will be. <INPUT TYPE="text" NAME="LBUF" SIZE=9> 
+
+Your LBand Monitor Freq will be <INPUT TYPE="text" NAME="TXTLBMon" SIZE=9>.
+
+
+</Pre>
+
+</td>
+<td > &nbsp</td>
+<td Width=400><P>
+For International feeds use the IS9xx Settings 9950 <br>
+For Domestic Feeds use the IA-8 Settings 10750 <br>
+This is a text box For information only, 
+you cant manually enter a number and expect it to work. TRL <br> 
+
+
+<b>
+To Calc the RXIF of a given Carrier</b></p>
+
+RXIF= (RXFrequency-XPCenter ) + 140 <br>
+(Non Inverting Ku Band.)
+<Pre>
+Example 
+
+RXFrequency     11856.300 <INPUT TYPE="text" NAME="b2" SIZE=9 STYLE="background:FFD700">
+XP Center       11840.000 <INPUT TYPE="text" NAME="a2" SIZE=9>
+               __________
+Yields a Delta of  16.3
+
+So               140.0000
+         Minus  + 16.3
+        _________________
+IF to the DMod =  156.300 <INPUT TYPE="text" NAME="c2" SIZE=9>
+<INPUT TYPE="BUTTON" VALUE="Calculate" ONCLICK="RXIF(this.form)">
+
+CF of the LBand D/C Will Be. <INPUT TYPE="text" NAME="LBDF" SIZE=9>.
+L-Band RxMonitor Freq is. &nbsp &nbsp<INPUT TYPE="text" NAME="LBDM" SIZE=9>
+<Font Color=Blue>
+Modified 25 April 06, for a 12.8/10.750 System <br>Seems to work as well as the CBand, <br>let me know if you encounter any bugs. TRL </font>
+</pre>
+
+</td>
+</tr>
+</table>
+</form>
+<div style="width:550;"> The TSEs formerly linked below referred to transponder plans for a series of satellites that were not obsolete at the time. Today, only IS-9 Series satellites are still used. These links provided the transponder center data needed for the calculations. </div>
+
+<br>
+<a href="Satellite_Transponder_Plans/TSE - Intelsat 9's transponder frequency plan.mht"
+target="Top"> Intelsat 9 Birds </a> &nbsp &nbsp &nbsp 
+
+<a href="Satellite_Transponder_Plans/TSE - Intelsat 8's transponder frequency plan.mht"
+target="Top"> Intelsat 8 Birds </a> &nbsp &nbsp &nbsp 
+<a href="Satellite_Transponder_Plans/TSE - Intelsat 7A's transponder frequency plan.mht"
+target="Top"> Intelsat 7A Birds </a> &nbsp &nbsp &nbsp 
+<a href="Satellite_Transponder_Plans/TSE - Intelsat 6's transponder frequency plan.mht"
+target="Top"> Intelsat 6 Birds </a> &nbsp &nbsp &nbsp 
+
+
+
+
+
