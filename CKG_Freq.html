@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Clarksburg formula Sheet</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<SCRIPT language=JavaScript>
+
+<!--- hide script from old browsers
+
+// The Offset and round technique used on this page is not a mistake. 
+// It is necessary to overcome a glitch in the how the IE was handling
+// the decimal math adding and extranious .00000004 figure for no apparent reason. 
+// Yes this make for ugly code but it works. trl 
+
+function TXIF(form) 
+{ 
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+
+working = (form.a1.value * 10000) - (form.b1.value * 10000)
+working = working + (140 *10000)
+
+Freq = Math.round(working)/10000 
+
+
+form.c1.value = Freq 
+
+}
+
+
+function RXIF(form) 
+{ 
+var working=0
+var LWorking=0
+var Freq=0
+var LBFreq=0
+
+working = (form.a2.value * 10000) - (form.b2.value * 10000)
+working = working + (140 *10000)
+
+Freq = Math.round(working)/10000 
+
+
+form.c2.value = Freq 
+
+}
+
+
+function add(form) {form.c1.value = (form.a1.value * 1) + (form.b1.value * 1)} 
+function subtract(form) {form.c2.value = (form.a2.value * 1) - (form.b2.value * 1)}
+function multiply(form) {form.c3.value = form.a3.value * form.b3.value}
+function divide(form) {form.c4.value = form.a4.value / form.b4.value}
+// end hiding contents from old browsers  -->
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.5890" name=GENERATOR></HEAD>
+<BODY>
+<TABLE width=700>
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER>
+      <H2>Transponder to IF Formula Sheet. </H2></CENTER>
+      <P>The information contained below is meant to help you convert, RF 
+      Frequencies to IF Frequencies. This is assuming that you are working on a 
+      Non-Inverted C band Service. For an Inverted C band or LBand Service. 
+      Please refer to the <A 
+      href="../TomsTools/MTN_Freq.html">MTN_Freq</A> 
+      &nbsp; sheet linked to this page. </P></TD></TR></TBODY></TABLE><BR><BR>
+<FORM>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top>
+      <P>To Calc the Center Frequency of a Modem for a non inverting C-Band 
+      Service apply the following formula. </P>
+      <P><PRE>IF Center = 140 + (TXCF -XPCF)
+
+Example  JED.1
+TX RF:                6033.0800 <INPUT size=9 name=a1>
+Transponder Center:   6050.0000 <INPUT size=9 name=b1>
+                      _________ 
+Gives an IF FReq of    123.0800 <INPUT size=9 name=c1>
+<INPUT onclick=TXIF(this.form) type=button value=Calculate>
+
+</PRE></TD>
+    <TD width=25>&nbsp; </TD>
+    <TD vAlign=top width=400 >
+      <P>To Calc the Center Frequency of a DeModulator for a non inverting 
+      C-Band Service apply the following formula. </P>
+      <P><PRE>IF Center = 140 + (RXCF -XPCF)
+
+Example  JED.1
+RX RF:                3836.2500 <INPUT size=9 name=a2>
+Transponder Center:   3825.0000 <INPUT size=9 name=b2>
+                      _________ 
+Gives an IF FReq of    151.2500 <INPUT size=9 name=c2>
+<INPUT onclick=RXIF(this.form) type=button value=Calculate>
+
+
+</PRE></TD></TR></TBODY></TABLE></FORM>
+
+<div style="width:550;"> 
+Or sister teleport, already depreciated that this writing used a non-invertying recieve. 
+This was the critial difference requiring its own calculator sheet. <br><br>
+
+The TSEs formerly linked below referred to transponder plans for a series of satellites that were not obsolete at the time. Today, only IS-9 Series satellites are still used. These links provided the transponder center data needed for the calculations.</div><br> 
+
+
+
+<A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite%20Transponder%20Plans/TSE%20-%20Intelsat%209's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 9 Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite%20Transponder%20Plans/TSE%20-%20Intelsat%208's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 8 Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite%20Transponder%20Plans/TSE%20-%20Intelsat%207A's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 7A Birds </A>&nbsp; &nbsp; &nbsp; <A 
+href="file:///C:/Documents%20and%20Settings/lavalt/Desktop/TomsTools/Satellite%20Transponder%20Plans/TSE%20-%20Intelsat%206's%20transponder%20frequency%20plan.mht" 
+target=Top>Intelsat 6 Birds </A>&nbsp; &nbsp; &nbsp; </BODY></HTML>
