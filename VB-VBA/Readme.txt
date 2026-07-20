@@ -1,0 +1,3 @@
+ 
+VB/VBA: 
+It will take a while to sanitize the files I worked up during my time in Satellite. But I think they demonstrate a reasonable level of skill with the VB/VBA code under the hood of these mini-apps. As these were developed for a working environment and not a production one, they are not much to look at cosmetically. The focus was always functional. As you will quickly observe, I have always favored fairly large, bulky user controls and messages, as I don't believe the user should ever have to search for either.TRL 
